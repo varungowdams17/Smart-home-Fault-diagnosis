@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-heading"><div class="eyebrow"><span class="eyebrow-dot"></span> INTERACTIVE PROOF SPACE</div><h1>Reasoning lab</h1>
+  <p>Run a sample scenario or test whether the current evidence entails a proposition.</p></section>
+<section class="section-block">
+  <div class="section-heading"><div><div class="eyebrow">INFERENCE DEMONSTRATIONS</div><h2>Choose a scenario</h2></div><span class="subtle-chip">Executed by the same logic engine</span></div>
+  <div class="scenario-grid">
+    <button class="scenario-card" data-scenario="1"><span class="scenario-number">01</span><span class="scenario-icon">☼</span><b>Light failure</b><small>Fuse is observed unhealthy</small><span class="scenario-run">Run scenario →</span></button>
+    <button class="scenario-card" data-scenario="2"><span class="scenario-number">02</span><span class="scenario-icon">ϟ</span><b>Power failure</b><small>Supply unavailable</small><span class="scenario-run">Run scenario →</span></button>
+    <button class="scenario-card" data-scenario="3"><span class="scenario-number">03</span><span class="scenario-icon">◉</span><b>Bulb failure</b><small>Bulb is observed faulty</small><span class="scenario-run">Run scenario →</span></button>
+    <button class="scenario-card" data-scenario="4"><span class="scenario-number">04</span><span class="scenario-icon">✦</span><b>Healthy light</b><small>All light conditions healthy</small><span class="scenario-run">Run scenario →</span></button>
+    <button class="scenario-card" data-scenario="5"><span class="scenario-number">05</span><span class="scenario-icon">?</span><b>Multiple possibilities</b><small>Failure observed; causes unknown</small><span class="scenario-run">Run scenario →</span></button>
+  </div>
+</section>
+<section id="scenario-result" class="result-section hidden" aria-live="polite"></section>
+<section class="section-block entailment-block">
+  <div class="section-heading"><div><div class="eyebrow">MODEL-CHECKING QUERY</div><h2>Does the evidence entail it?</h2></div><span class="subtle-chip">TRUE · FALSE · UNKNOWN</span></div>
+  <div class="entail-layout">
+    <form id="entailment-form" class="panel entail-form">
+      <label class="field query-field"><span>Proposition or formula</span><input name="query" value="L" autocomplete="off" placeholder="e.g. L or ¬P → ¬L" required><small>Use symbols P, M, F, W, B, L, S, A, C, O, E and operators ∧ ∨ ¬ →.</small></label>
+      <div class="field-grid compact-grid">
+        <label class="field"><span>Power supply (P)</span><select name="power"><option value="unknown">Unknown</option><option value="available">Available</option><option value="unavailable">Unavailable</option></select></label>
+        <label class="field"><span>Main switch (M)</span><select name="main_switch"><option value="unknown">Unknown</option><option value="on">ON</option><option value="off">OFF</option></select></label>
+        <label class="field"><span>Fuse (F)</span><select name="fuse"><option value="unknown">Unknown</option><option value="healthy">Healthy</option><option value="blown">Blown</option></select></label>
+        <label class="field"><span>Wiring (W)</span><select name="wiring"><option value="unknown">Unknown</option><option value="healthy">Healthy</option><option value="faulty">Faulty</option></select></label>
+        <label class="field"><span>Bulb (B)</span><select name="bulb"><option value="unknown">Unknown</option><option value="healthy">Healthy</option><option value="faulty">Faulty</option></select></label>
+        <label class="field"><span>Breaker (C)</span><select name="breaker"><option value="unknown">Unknown</option><option value="on">ON</option><option value="off">OFF</option></select></label>
+        <label class="field"><span>Overload (O)</span><select name="overload"><option value="unknown">Unknown</option><option value="detected">Detected</option><option value="clear">Not detected</option></select></label>
+        <label class="field"><span>Connection (E)</span><select name="connection"><option value="unknown">Unknown</option><option value="healthy">Healthy</option><option value="faulty">Faulty</option></select></label>
+      </div>
+      <div class="entail-actions"><button class="button button-primary" type="submit">Check entailment <span>→</span></button></div>
+    </form>
+    <aside class="panel entail-note"><div class="aside-icon">⊨</div><h2>Not just a fact lookup.</h2><p>Model checking asks whether every model satisfying the rules and observations agrees on your query.</p>
+      <div class="truth-key"><span class="true-key">TRUE</span><small>All models agree true</small></div>
+      <div class="truth-key"><span class="false-key">FALSE</span><small>All models agree false</small></div>
+      <div class="truth-key"><span class="unknown-key">UNKNOWN</span><small>Models disagree</small></div></aside>
+  </div>
+  <div id="entailment-result" class="result-section hidden" aria-live="polite"></div>
+</section>
+{% endblock %}

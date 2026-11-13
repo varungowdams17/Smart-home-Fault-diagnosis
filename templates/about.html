@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-heading"><div class="eyebrow"><span class="eyebrow-dot"></span> PROJECT NOTES</div><h1>About CircuitSense</h1>
+  <p>A college AI project demonstrating propositional logic through a familiar smart-home scenario.</p></section>
+<div class="about-grid">
+  <article class="panel about-card"><div class="about-icon">∴</div><div class="eyebrow">PROJECT OBJECTIVE</div><h2>Explainable diagnosis</h2><p>CircuitSense represents home conditions as propositions and applies a small knowledge base of implications. Its inference trace makes each rule application inspectable rather than displaying a canned answer.</p></article>
+  <article class="panel about-card"><div class="about-icon">⊨</div><div class="eyebrow">AI TECHNIQUES</div><h2>Reasoning methods</h2><ul><li>Forward chaining with modus ponens</li><li>Backward chaining for literal proof attempts</li><li>Truth-table model checking for entailment</li><li>Consistency checks before drawing conclusions</li><li>Abductive candidate listing for possible causes</li></ul></article>
+  <article class="panel about-card safety-about"><div class="about-icon">!</div><div class="eyebrow">SAFETY DISCLAIMER</div><h2>Educational use only</h2><p>This application is an educational AI fault diagnosis simulator. It does not perform real electrical testing. Electrical faults should be inspected by a qualified electrician.</p><p>Never use a simulator output as instructions to touch, test, or repair electrical equipment.</p></article>
+</div>
+{% endblock %}

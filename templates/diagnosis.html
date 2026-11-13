@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-heading"><div class="eyebrow"><span class="eyebrow-dot"></span> OBSERVATION WORKBENCH</div><h1>Fault diagnosis</h1>
+  <p>Only enter conditions you have observed. Leave everything else as unknown.</p></section>
+<div class="diagnosis-layout">
+  <form id="diagnosis-form" class="panel form-panel">
+    <div class="form-section-title"><span class="step-number">01</span><div><h2>Observed conditions</h2><p>Unknown is not the same as false.</p></div></div>
+    <div class="field-grid">
+      <label class="field"><span>Power supply</span><select name="power"><option value="unknown">Unknown</option><option value="available">Available</option><option value="unavailable">Unavailable</option></select></label>
+      <label class="field"><span>Main switch</span><select name="main_switch"><option value="unknown">Unknown</option><option value="on">ON</option><option value="off">OFF</option></select></label>
+      <label class="field"><span>Fuse</span><select name="fuse"><option value="unknown">Unknown</option><option value="healthy">Healthy</option><option value="blown">Blown / unhealthy</option></select></label>
+      <label class="field"><span>Wiring</span><select name="wiring"><option value="unknown">Unknown</option><option value="healthy">Healthy</option><option value="faulty">Faulty</option></select></label>
+      <label class="field"><span>Bulb</span><select name="bulb"><option value="unknown">Unknown</option><option value="healthy">Healthy</option><option value="faulty">Faulty</option></select></label>
+      <label class="field"><span>Circuit breaker</span><select name="breaker"><option value="unknown">Unknown</option><option value="on">ON</option><option value="off">OFF</option></select></label>
+      <label class="field"><span>Overload</span><select name="overload"><option value="unknown">Unknown</option><option value="detected">Detected</option><option value="clear">Not detected</option></select></label>
+      <label class="field"><span>Electrical connection</span><select name="connection"><option value="unknown">Unknown</option><option value="healthy">Healthy</option><option value="faulty">Faulty</option></select></label>
+    </div>
+    <div class="form-divider"></div>
+    <div class="form-section-title compact"><span class="step-number">02</span><div><h2>Observed symptoms</h2><p>Select all that apply.</p></div></div>
+    <div class="symptom-grid">
+      <label class="check-card"><input type="checkbox" name="symptoms" value="light_not_working"><span class="check-mark"></span><span><b>Light not working</b><small>Light output is off</small></span><i>☼</i></label>
+      <label class="check-card"><input type="checkbox" name="symptoms" value="socket_not_working"><span class="check-mark"></span><span><b>Socket not working</b><small>No socket output</small></span><i>▤</i></label>
+      <label class="check-card"><input type="checkbox" name="symptoms" value="appliance_not_working"><span class="check-mark"></span><span><b>Appliance not working</b><small>Appliance has no function</small></span><i>⌂</i></label>
+      <label class="check-card"><input type="checkbox" name="symptoms" value="house_no_power"><span class="check-mark"></span><span><b>Entire house has no power</b><small>Supply appears unavailable</small></span><i>ϟ</i></label>
+      <label class="check-card"><input type="checkbox" name="symptoms" value="breaker_trips"><span class="check-mark"></span><span><b>Breaker frequently trips</b><small>Overload indicator reported</small></span><i>⛨</i></label>
+    </div>
+    <div class="form-actions"><span class="form-hint">No repairs are suggested by this simulator.</span><button class="button button-primary" type="submit"><span>∴</span> Diagnose fault</button></div>
+  </form>
+  <aside class="diagnosis-aside">
+    <article class="panel aside-panel"><div class="aside-icon">∴</div><div class="eyebrow">HOW IT WORKS</div><h2>Evidence before answers.</h2><p>The engine uses forward chaining and model checking. It never turns an unknown reading into a fault.</p>
+      <div class="mini-flow"><span>OBSERVE</span><b>→</b><span>INFER</span><b>→</b><span>EXPLAIN</span></div></article>
+    <article class="panel aside-panel safety-mini"><div class="eyebrow">IMPORTANT</div><p>This simulator cannot test your home. Never use it as a substitute for inspection by a qualified electrician.</p></article>
+  </aside>
+</div>
+<section id="diagnosis-result" class="result-section hidden" aria-live="polite"></section>
+{% endblock %}

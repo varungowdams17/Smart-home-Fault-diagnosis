@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-heading"><div class="eyebrow"><span class="eyebrow-dot"></span> INFERENCE REFERENCE</div><h1>Logical rules</h1>
+  <p>Each rule is represented as a propositional implication and loaded by the inference engine.</p></section>
+<div class="rules-intro panel"><span class="rules-intro-icon">→</span><p><b>Modus ponens:</b> when a rule's premise is established, its conclusion can be derived. A rule does not work backwards by itself; for example, observing a failed light does not prove which component failed.</p></div>
+<section class="rule-list">
+  {% for rule in rules %}
+  <article class="rule-card"><div class="rule-id">{{ rule.identifier }}</div><div class="rule-content">
+    <code>{{ rule.formula }}</code><p>{{ rule.description }}</p></div><span class="rule-type">IMPLICATION</span></article>
+  {% endfor %}
+</section>
+<div class="callout warning-callout"><span>!</span><p>These are simplified educational rules, not a complete electrical model. Real installations have additional conditions and protections not represented here.</p></div>
+{% endblock %}

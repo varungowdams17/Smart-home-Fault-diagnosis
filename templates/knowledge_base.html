@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-heading"><div class="eyebrow"><span class="eyebrow-dot"></span> SYMBOLIC MODEL</div><h1>Knowledge base</h1>
+  <p>The propositions and the meaning assigned to each symbol in the reasoning engine.</p></section>
+<section class="panel table-panel">
+  <div class="panel-heading"><div><div class="eyebrow">11 PROPOSITIONS</div><h2>System vocabulary</h2></div><span class="subtle-chip">Unknown ≠ false</span></div>
+  <div class="table-wrap"><table><thead><tr><th>SYMBOL</th><th>PROPOSITION</th><th>DOMAIN</th><th>TRUE MEANS</th><th>FALSE MEANS</th></tr></thead><tbody>
+    {% for item in propositions %}
+    <tr><td><span class="symbol-pill">{{ item.symbol }}</span></td><td class="table-strong">{{ item.name }}</td><td>{{ item.category }}</td>
+      <td class="positive-text">{{ "Yes / healthy" if item.symbol not in ["L", "S", "A"] else "Functioning" }}</td>
+      <td class="negative-text">{{ "No / unhealthy" if item.symbol not in ["L", "S", "A"] else "Not functioning" }}</td></tr>
+    {% endfor %}
+  </tbody></table></div>
+</section>
+<div class="callout info-callout"><span>i</span><p><b>Open-world evidence:</b> the system records only observed facts. If no value has been supplied for a symbol, it remains unknown and can vary across the knowledge base's satisfying models.</p></div>
+<div class="page-bottom-link"><a class="text-link" href="{{ url_for('rules_page') }}">Inspect the logical rules <span>→</span></a></div>
+{% endblock %}
